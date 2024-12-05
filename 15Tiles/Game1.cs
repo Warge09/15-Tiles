@@ -1,15 +1,11 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Collections.Generic;
-using System.Collections;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
+using System;
+using System.Collections.Generic;
 
-namespace _15Tiles
+namespace Project2
 {
     public class Game1 : Game
     {
@@ -22,10 +18,13 @@ namespace _15Tiles
         private int Moves;
 
         int[,] _Tiles = new int[4, 4];
- 
+
         private Texture2D BackgroundImage;
         private Texture2D TileImage;
         private Texture2D TitleScreen;
+
+        private enum GAMESTATES { MENU, GAMESTART, JIGSAW, SOLVED, GAMEEND};
+        private GAMESTATES gamestates;
 
         public Game1()
         {
@@ -33,16 +32,18 @@ namespace _15Tiles
             _graphics.PreferredBackBufferWidth = WINDOW_WIDTH;
             _graphics.PreferredBackBufferHeight = WINDOW_HEIGHT;
             this.Window.AllowUserResizing = false;
-            this.Window.Title = "15 Tiles Game"; 
+            this.Window.Title = "15 Tiles Game";
             IsMouseVisible = true;
 
             Moves = 0;
 
+
         }
 
         protected override void Initialize()
-        {       
-            
+        {
+
+
             base.Initialize();
         }
 
@@ -53,16 +54,17 @@ namespace _15Tiles
             BackgroundImage = Content.Load<Texture2D>("content/background");
         }
 
+ 
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
 
             base.Update(gameTime);
-        }
 
+        }
+            
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);

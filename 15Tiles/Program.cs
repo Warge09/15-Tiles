@@ -1,2 +1,2 @@
-﻿using var game = new _15Tiles.Game1();
+﻿using var game = new Project2.Game1();
 game.Run();
